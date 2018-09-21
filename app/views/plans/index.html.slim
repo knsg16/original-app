@@ -13,10 +13,10 @@ table.table
       tr
         th[scope="row"] = plan.id
         td = plan.name
-        td = plan.price.to_s(:delimited, delimiter: ',')
-        td = plan.month_quantity_limit.to_s(:delimited, delimiter: ',')
+        td = plan.price
+        td = plan.month_quantity_limit
         td = plan.once_quantity_limit
-        td = plan.month_delivery_limit.to_s(:delimited, delimiter: ',')
+        td = plan.month_delivery_limit
         td
           - if loyalty(@plan, :plans).destroy?
             = link_to '削除', "/plans/#{plan.id}", method: :delete, class: 'btn btn-danger float-right', data: {confirm: '本当に削除しますか?'}
