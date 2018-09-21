@@ -1,0 +1,18 @@
+= render partial: '/commons/alart', locals: { object: @delivery }
+= bootstrap_form_for(@delivery) do |f|
+  |  　
+  = f.label '会社名'
+  = f.collection_select(:contract_id, @contracts, :id, :company_name, { class: "form-control input-lg", include_blank: true })
+  = f.label '配送スケジュール'
+  = f.date_field :schedule_date
+  .form-row
+    - @delivery.delivery_items.each_with_index do |delivery_item, i|
+      .form-group.col-md-6
+        = f.label '商品名'
+        h3 = @items[i].name
+      .form-group.col-md-6
+        = f.label '数量'
+        = f.fields_for :delivery_items, delivery_item do |delivery_item_field|
+          = delivery_item_field.hidden_field :item_id, value: @items[i].id
+          = delivery_item_field.text_field :amount
+  =  f.submit "登録", class: "btn btn-success float-right"

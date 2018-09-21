@@ -1,0 +1,11 @@
+= render partial: '/commons/alart', locals: { object: @user }
+= bootstrap_form_for(@user) do |f|
+  = f.label '名前'
+  = f.text_field :username
+  = f.label 'Email'
+  = f.text_field :email
+  p
+    | ※ 0: メンバー, 1: 全権限, 2: 配送, 3: CS, 4: 事業開発
+  = f.label '権限'
+  = f.text_field :authority
+  =  f.submit "変更", class: "btn btn-success float-right"

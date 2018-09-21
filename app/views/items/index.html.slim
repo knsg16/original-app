@@ -1,0 +1,22 @@
+table.table
+  thead.thead-dark
+    tr
+      th[scope="col"] #
+      th[scope="col"] 商品名
+      th[scope="col"] 値段
+      th[scope="col"] 登録日時
+      th[scope="col"]
+  tbody
+    - @items.each do |item|
+      tr
+        th[scope="row"] = item.id
+        td = item.name
+        td = item.price
+        td = item.created_at.strftime("%Y/%m/%d")
+        td
+          - if loyalty(@item, :items).destroy?
+            = link_to '削除', "/items/#{item.id}", method: :delete, class: 'btn btn-danger float-right', data: {confirm: '本当に削除しますか?'}
+          - if loyalty(@item, :items).update?
+            = link_to '編集', edit_item_path(item.id),  class: 'btn btn-warning float-right'
+- if loyalty(@item, :items).create?
+  = link_to "新規商品登録", new_item_path, class: 'btn btn-success float-right'

@@ -1,0 +1,13 @@
+= render partial: '/commons/alart', locals: { object: @plan }
+= bootstrap_form_for(@plan) do |f|
+  = f.label 'プラン名'
+  = f.text_field :name
+  = f.label '価格'
+  = f.text_field :price
+  = f.label '上限納品個数（1ヶ月あたり）'
+  = f.text_field :month_quantity_limit
+  = f.label '配送上限個数（1配送あたり）'
+  = f.text_field :once_quantity_limit
+  = f.label '配送上限回数（1ヶ月あたり）'
+  = f.text_field :month_delivery_limit
+  =  f.submit "変更", class: "btn btn-success float-right"

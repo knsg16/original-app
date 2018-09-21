@@ -1,0 +1,11 @@
+= render partial: '/commons/alart', locals: { object: @contract }
+= bootstrap_form_for(@contract) do |f|
+  |  　
+  = f.label '会社名'
+  = f.collection_select(:company_id, Company.all, :company_id, :company_name, { :class => "form-control input-lg", :include_blank => true })
+  = f.label 'プラン名'
+  = f.collection_select(:plan_id, Plan.all, :id, :name, { :class => "form-control input-lg", :include_blank => true } )
+  = f.label '申込日'
+  = f.date_field :applicated_date
+  = f.hidden_field :start_date
+  =  f.submit "登録", class: "btn btn-success float-right"

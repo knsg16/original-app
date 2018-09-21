@@ -1,0 +1,19 @@
+section.view.intro-2.hm-gradient
+  .full-bg-img
+    .container.flex-center
+      .row.flex-center.pt-5.mt-3
+        .col-md-6.text-center.text-md-left.margins
+          .white-text
+            br
+            br
+            h1.h1-responsive.wow.fadeInLeft[data-wow-delay="0.3s"]
+              | Oton Delivery System 
+            hr.hr-light.wow.fadeInLeft[data-wow-delay="0.3s"]
+            h6.wow.fadeInLeft[data-wow-delay="0.3s"]
+              | Oton Delivery System is the system which enable you to oparate your daily basis delivery work much more easy than before. You can oparate our system intuitively.
+            br
+            - unless user_signed_in?
+              |  <a class="btn btn-outline-white wow fadeInLeft", href="/users/sign_up" >Sign up
+              |  <a class="btn btn-outline-white wow fadeInLeft", href="/users/sign_in">Log in
+        .col-md-6.wow.fadeInRight.d-flex.justify-content-center[data-wow-delay="0.3s"]
+          = link_to image_tag("oton_logo.png", alt: "Oton logo",size: "500x400"), "/", class:"img-responsive center-block"

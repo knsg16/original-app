@@ -1,0 +1,42 @@
+.search
+  - if loyalty(@delivery, :deliveries).create?
+    = link_to '新規スケジュール登録', new_delivery_path, class: "btn btn-success float-right"
+  = form_tag(deliveries_path, :method => 'get' ) do
+    = text_field_tag :search, @search ,placeholder: "会社名で検索"
+    = submit_tag 'Search', :company_name => nil, class: "btn btn-outline-success"
+- @deliveries.each do |delivery|
+  ul
+
+  .card
+    .card-header.bg-dark.text-white
+      div
+        | 契約ID: 
+        = delivery.contract_id
+        h3.float-right
+          = delivery.contract.company.company_name
+      div
+        | 配送予定日: 
+        = delivery.schedule_date
+    .card-body.text-center
+      table.table
+        thead
+          tr
+            th[scope="col"] #
+            th[scope="col"] 商品名
+            th[scope="col"] 数量
+        tbody
+          - delivery.delivery_items.each.with_index(1) do |delivery_item, i|
+            tr
+              th[scope="row"] = i
+              td = @items[delivery_item.item_id]
+              td = delivery_item.amount
+      - if loyalty(@delivery, :deliveries).destroy?
+        = link_to '削除', "/deliveries/#{delivery.id}", method: :delete, class: 'btn btn-sm btn-danger float-right', data: {confirm: '本当に削除しますか?'}
+      - if loyalty(@delivery, :deliveries).destroy?
+        = link_to '編集', edit_delivery_path(delivery.id),  class: 'btn btn-warning btn-sm float-right'
+      - if (delivery.maintenanced_at.nil? && loyalty(@delivery, :deliveries).maintenanced? == true)
+        = link_to '未配送', "/deliveries/#{delivery.id}/maintenanced", class: 'btn btn-sm btn-primary float-right', data: {confirm: '配送完了にしますか?'}
+      - elsif (delivery.maintenanced_at.nil? && loyalty(@delivery, :deliveries).maintenanced? == false)
+        button.btn.btn-sm.btn-primary.float-right.disabled[type="button" disabled] 未配送
+      - else
+        button.btn.btn-sm.btn-secondary.float-right[type="button" disabled] 配送済み

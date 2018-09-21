@@ -1,0 +1,32 @@
+table.table
+  thead.thead-dark
+    tr
+      th[scope="col"] #
+      th[scope="col"] 会社名
+      th[scope="col"] 事業所名
+      th[scope="col"] 郵便番号
+      th[scope="col"] 住所
+      th[scope="col"] 担当者名
+      th[scope="col"] Email
+      th[scope="col"] Tel
+      th[scope="col"]
+  tbody
+    |  　　
+    - @companies.each do |company|
+      |  　　
+      tr
+        th[scope="row"] = company.id
+        td = company.company_name
+        td = company.office_name
+        td = company.postcode
+        td = "#{company.address_prefecture} #{company.address_city} #{company.address_street_number} #{company.address_after}"  
+        td = company.contact_person
+        td = company.email
+        td = company.tel
+        td
+          - if loyalty(@company, :companies).destroy?
+            = link_to '削除', "/companies/#{company.id}", method: :delete, class: 'btn btn-danger float-right', data: {confirm: '本当に削除しますか?'}
+          - if loyalty(@company, :companies).update?
+            = link_to '編集', edit_company_path(company.id),  class: 'btn btn-warning float-right'
+- if loyalty(@company, :companies).create?
+  = link_to "新規会社登録", new_company_path, class: 'btn btn-success float-right'

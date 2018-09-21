@@ -1,0 +1,55 @@
+ja:
+  banken:
+    default: あなたの権限では行うことができません
+    posts_loyalty:
+      update?: 'You cannot edit this post!'
+      create?: 'You cannot create posts!'
+  activerecord:
+    models:
+      item: 商品
+      company: 会社
+      plan: プラン
+      contract: 契約
+      delivery: 配送
+      delivery_items: 商品
+      user: ユーザー
+    attributes:
+      item:
+        name: 商品名
+        price: 値段
+      company:
+        company_name: 会社名
+        office_name: 事業所名
+        address_prefecture: 都道府県
+        address_city: 市町村
+        address_street_number: 丁目番地
+        address_after: 建物名など
+        postcode: 郵便番号
+        contact_person: 担当者
+        email: Email
+        tel: 固定電話
+      plan:
+        name: プラン名
+        price: 価格
+        month_quantity_limit: 上限納品個数
+        once_quantity_limit: 配送上限個数
+        month_delivery_limit: 配送上限回数
+      contract:
+        company_id: 会社名
+        plan_id: プラン名
+        applicated_date: 申込日
+        start_date: 契約開始日
+        end_date: 契約終了日
+      delivery:
+        contract_id: 会社名
+        schedule_date: 配送スケジュール
+        amount: プラン
+      delivery_items:
+        item_id: 商品名
+        amount: 数量
+      user:
+        username: 名前
+        authority: 権限
+        email: Email
+        
+        
